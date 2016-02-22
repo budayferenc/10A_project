@@ -1,7 +1,6 @@
 package product;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,11 +13,10 @@ public class ObjectServer
 {
 	ServerMode mode = ServerMode.LOAD;
 
-	static FileOutputStream fos;
-	static ObjectOutputStream oos;
-
+	static FileInputStream fis;
+	static ObjectInputStream ois;
 	/*
-	 * static FileInputStream fis; static ObjectInputStream ois;
+	 * static FileOutputStream fos; static ObjectOutputStream oos;
 	 */
 
 	public ObjectServer()
@@ -33,8 +31,10 @@ public class ObjectServer
 			ObjectOutputStream streamtoClient = new ObjectOutputStream(socket.getOutputStream());
 			ObjectInputStream streamFromClient = new ObjectInputStream(socket.getInputStream());
 
-			fos = new FileOutputStream("example.txt", true);
-			oos = new ObjectOutputStream(fos);
+			/*
+			 * fos = new FileOutputStream("example.txt", true); oos = new
+			 * ObjectOutputStream(fos);
+			 */
 
 			while (true)
 			{
@@ -68,9 +68,9 @@ public class ObjectServer
 						System.out.printf("Mode of server now: " + mode + "\n\n");
 
 						/*
-						 * try { fos = new FileOutputStream("example.txt",true);
-						 * oos = new ObjectOutputStream(fos); oos.close();
-						 * fos.close(); } catch (IOException ex) {
+						 * try { fos = new FileOutputStream("example.txt",
+						 * true); oos = new ObjectOutputStream(fos);
+						 * oos.close(); fos.close(); } catch (IOException ex) {
 						 * ex.printStackTrace(); }
 						 */
 
@@ -105,15 +105,15 @@ public class ObjectServer
 
 	{
 		List<Object> listOfObjects = new ArrayList<>();
-		// fis = new FileInputStream("example.txt");
-		// ois = new ObjectInputStream(fis);
-		// Object object;
-		// while ((object = ois.readObject()) != null)
-		// {
-		// listWithObjects.add(object);
-		// }
-		// ois.close();
-		// fis.close();
+		fis = new FileInputStream("example.txt");
+		ois = new ObjectInputStream(fis);
+		Object object;
+		while ((object = ois.readObject()) != null)
+		{
+			listOfObjects.add(object);
+		}
+		ois.close();
+		fis.close();
 
 		try
 		{
@@ -141,19 +141,16 @@ public class ObjectServer
 
 	public static void save(Object o)
 	{
-		try
-		{
-
-			// FileOutputStream fos = new FileOutputStream("example.txt", true);
-			// ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(o);
-			// oos.writeObject(o);
-			// oos.close();
-			// fos.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		/*
+		 * try {
+		 * 
+		 * FileOutputStream fos = new FileOutputStream("example.txt", true);
+		 * ObjectOutputStream oos = new ObjectOutputStream(fos);
+		 * oos.writeObject(o); oos.close(); fos.close();
+		 * 
+		 * 
+		 * } catch (IOException e) { e.printStackTrace(); }
+		 */
 	}
 
 	public static void main(String[] args)
