@@ -1,15 +1,16 @@
 package product;
 
-public class Product
+import java.io.Serializable;
+
+public class Product implements Serializable
 {
 	String id;
 	String title;
 	Person person;
 
-	public Product(String id, String title, Person person)
+	public Product(String title, Person person)
 	{
-		super();
-		this.id = id;
+		// this.id = IdGenerator.generateID(this);
 		this.title = title;
 		this.person = person;
 	}
@@ -32,5 +33,10 @@ public class Product
 	public long getInvestement()
 	{
 		return 0;
+	}
+
+	public void setId(String id)
+	{
+		this.id = id;
 	}
 }

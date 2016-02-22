@@ -1,17 +1,18 @@
 package product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game extends Product implements Buyable
+public class Game extends Product implements Buyable, Serializable
 {
-	private boolean preOrdered;
-	private List<Person> staff = new ArrayList<Person>();
-	private int price;
+	boolean preOrdered;
+	List<Person> staff = new ArrayList<Person>();
+	int price;
 
-	public Game(String id, String title, Person person, boolean preOrdered, List<Person> staff, int price)
+	public Game(String title, Person person, boolean preOrdered, List<Person> staff, int price)
 	{
-		super(id, title, person);
+		super(title, person);
 		this.preOrdered = preOrdered;
 		this.staff = staff;
 		if (preOrdered)
@@ -67,7 +68,7 @@ public class Game extends Product implements Buyable
 
 	public String toString()
 	{
-		return "Id: " + id + "\nTitle: " + title + "\nAuthor: " + person + "\nPreordered: " + preOrdered + "\nStaff:\n "
+		return "Id: " + id + "\nTitle: " + title + "\nAuthor: " + person + "\nPreordered: " + preOrdered + "\nStaff: "
 				+ staff + "\nPrice: " + price + "\nInvestment: " + getInvestement();
 	}
 }

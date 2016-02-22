@@ -1,6 +1,8 @@
 package product;
 
-public class Person
+import java.io.Serializable;
+
+public class Person implements Serializable
 {
 	String firstName;
 	String lastName;
@@ -45,12 +47,6 @@ public class Person
 		this.gender = gender;
 	}
 
-	public String toString()
-	{
-		return "\n\tFirst name: " + firstName + "\n\tLast name: " + lastName + "\n\tGender: " + gender + "\n\tSalary: "
-				+ salary + ("\n");
-	}
-
 	public int getSalary()
 	{
 		return salary;
@@ -60,4 +56,11 @@ public class Person
 	{
 		this.salary = salary;
 	}
+
+	public String toString()
+	{
+		return "\n\tFirst name: " + firstName + "\n\tLast name: " + lastName + "\n\tGender: " + gender + "\n\tSalary: "
+				+ salary + ("\n");
+	}
+
 }

@@ -1,12 +1,14 @@
 package product;
 
-public class Book extends Product
-{
-	private Person author;
+import java.io.Serializable;
 
-	public Book(Person author, String id, String title, Person person)
+public class Book extends Product implements Serializable
+{
+	Person author;
+
+	public Book(String title, Person person, Person author)
 	{
-		super(id, title, person);
+		super(title, person);
 		this.author = author;
 	}
 
@@ -20,6 +22,7 @@ public class Book extends Product
 		this.author = author;
 	}
 
+	@Override
 	public long getInvestement()
 	{
 		return author.getSalary();
@@ -27,6 +30,7 @@ public class Book extends Product
 
 	public String toString()
 	{
-		return "Id: " + id + "\nTitle: " + title + "\nAuthor: " + author + "\nInvestment: " + getInvestement();
+		return "Id: " + id + "\nTitle: " + title + "\nPerson: " + person + "\nAuthor: " + author.firstName + " "
+				+ author.lastName + "\nSalary: " + author.salary;
 	}
 }

@@ -1,9 +1,10 @@
 package product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie extends Product implements Buyable
+public class Movie extends Product implements Buyable, Serializable
 {
 	Genre genre;
 	long duration;
@@ -11,10 +12,9 @@ public class Movie extends Product implements Buyable
 	List<Person> cast = new ArrayList<Person>();
 	int price;
 
-	public Movie(String id, String title, Person person, Genre genre, long duration, double rate, List<Person> cast,
-			int price)
+	public Movie(String title, Person person, Genre genre, long duration, double rate, List<Person> cast, int price)
 	{
-		super(id, title, person);
+		super(title, person);
 		this.genre = genre;
 		this.duration = duration;
 		this.rate = rate;
@@ -52,12 +52,6 @@ public class Movie extends Product implements Buyable
 		this.rate = rate;
 	}
 
-	public String toString()
-	{
-		return "Id: " + id + "\nTitle: " + title + "\nProducer: " + person + "\nGenre: " + genre + "\nLong: " + duration
-				+ "\nRate: " + rate + "\nCast: " + cast + "\nInvestment: " + getiInvestement();
-	}
-
 	public List<Person> getCast()
 	{
 		return cast;
@@ -86,5 +80,11 @@ public class Movie extends Product implements Buyable
 			sumSalary += person.getSalary();
 		}
 		return sumSalary;
+	}
+
+	public String toString()
+	{
+		return "Id: " + id + "\nTitle: " + title + "\nProducer: " + person + "\nGenre: " + genre + "\nLong: " + duration
+				+ "\nRate: " + rate + "\nCast: " + cast + "\nInvestment: " + getiInvestement();
 	}
 }
